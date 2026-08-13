@@ -5,7 +5,11 @@ import { AnimatePresence, motion } from "motion/react";
 import { navLinks, siteConfig, whatsappUrl } from "@/data/site";
 import { cn } from "@/lib/utils";
 
-export function Navbar() {
+/**
+ * `solid` para páginas sem hero fotográfico: o cabeçalho já nasce com fundo,
+ * porque não há imagem embaixo para justificar a transparência.
+ */
+export function Navbar({ solid = false }: { solid?: boolean } = {}) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -23,12 +27,14 @@ export function Navbar() {
     };
   }, [open]);
 
+  const isSolid = solid || scrolled;
+
   return (
     <>
       <header
         className={cn(
           "fixed inset-x-0 top-0 z-50 transition-all duration-500",
-          scrolled
+          isSolid
             ? "bg-canvas/80 py-4 backdrop-blur-md"
             : "bg-transparent py-7"
         )}
@@ -39,11 +45,11 @@ export function Navbar() {
             "flex items-center justify-between px-6 md:px-10",
             // Before scroll the nav shares the viewport with the hero photo,
             // so it stays inside the left text column to keep contrast.
-            scrolled ? "mx-auto max-w-[1400px]" : "md:w-[45%]"
+            isSolid ? "mx-auto max-w-[1400px]" : "md:w-[45%]"
           )}
         >
           <a
-            href="#top"
+            href="/"
             className="font-serif text-lg tracking-tight md:text-xl"
             aria-label={`${siteConfig.name} — início`}
           >
@@ -53,7 +59,7 @@ export function Navbar() {
           <ul
             className={cn(
               "hidden items-center xl:flex",
-              scrolled ? "gap-9" : "gap-5 xl:gap-7"
+              isSolid ? "gap-9" : "gap-5 xl:gap-7"
             )}
           >
             {navLinks.map((link) => (
@@ -67,7 +73,7 @@ export function Navbar() {
                 </a>
               </li>
             ))}
-            {scrolled && (
+            {isSolid && (
               <li>
                 <a
                   href={siteConfig.app}
@@ -97,7 +103,7 @@ export function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed inset-0 z-[60] flex flex-col bg-canvas px-6 py-7 md:hidden"
+            className="fixed inset-0 z-[60] flex flex-col bg-canvas px-6 py-7 xl:hidden"
           >
             <div className="flex items-center justify-between">
               <span className="font-serif text-lg">{siteConfig.name}</span>

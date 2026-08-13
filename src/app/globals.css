@@ -74,3 +74,12 @@
     scroll-behavior: auto;
   }
 }
+
+@layer utilities {
+  /* Banner horizontal a partir de foto vertical: mostra do olhar à boca,
+     em vez de fatiar só a linha dos olhos. */
+  .banner-crop {
+    object-fit: cover;
+    object-position: center 30%;
+  }
+}

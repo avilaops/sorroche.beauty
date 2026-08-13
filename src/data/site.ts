@@ -30,11 +30,44 @@ export const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encode
   `${siteConfig.address.street}, ${siteConfig.address.district}, ${siteConfig.address.city} - ${siteConfig.address.state}, ${siteConfig.address.zip}`
 )}`;
 
+// Absolutos para funcionarem também a partir das páginas internas.
 export const navLinks = [
-  { label: "Portfólio", href: "#portfolio" },
-  { label: "Serviços", href: "#servicos" },
-  { label: "Noivas", href: "#noivas" },
-  { label: "Curso", href: "#curso" },
-  { label: "Sobre", href: "#sobre" },
-  { label: "Contato", href: "#contato" },
+  { label: "Portfólio", href: "/#portfolio" },
+  { label: "Noivas", href: "/noivas" },
+  { label: "Serviços", href: "/#servicos" },
+  { label: "Curso", href: "/curso-automaquiagem" },
+  { label: "Blog", href: "/blog" },
+  { label: "Contato", href: "/#contato" },
+] as const;
+
+/** Páginas de serviço com URL própria. */
+export const servicePages = [
+  {
+    slug: "noivas",
+    label: "Noivas",
+    title: "Maquiagem de Noiva em São José do Rio Preto",
+    description:
+      "Maquiagem para noivas em São José do Rio Preto: teste, acabamento fotográfico, longa duração e atendimento com horário reservado.",
+  },
+  {
+    slug: "maquiagem-social",
+    label: "Maquiagem Social",
+    title: "Maquiagem Social em São José do Rio Preto",
+    description:
+      "Maquiagem para formatura, festa, debutante e aniversário em São José do Rio Preto, com acabamento natural e longa duração.",
+  },
+  {
+    slug: "maquiagem-blindada",
+    label: "Maquiagem Blindada",
+    title: "Maquiagem Blindada em São José do Rio Preto",
+    description:
+      "Maquiagem blindada de longa duração em São José do Rio Preto: acabamento que resiste ao calor, à emoção e às horas de festa.",
+  },
+  {
+    slug: "curso-automaquiagem",
+    label: "Curso de Automaquiagem",
+    title: "Curso de Automaquiagem em São José do Rio Preto",
+    description:
+      "Aula de automaquiagem em São José do Rio Preto para entender seu rosto, seus produtos e repetir o resultado sozinha.",
+  },
 ] as const;
