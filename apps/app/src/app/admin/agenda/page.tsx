@@ -3,8 +3,14 @@ import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 import { fullDate, time } from "@/lib/format";
 import { AppShell } from "@/components/AppShell";
+import { setBookingStatus } from "./actions";
 
 export const metadata: Metadata = { title: "Agenda" };
+
+const STATUS_LABEL: Record<string, string> = {
+  PENDING: "Aguardando",
+  CONFIRMED: "Confirmado",
+};
 
 export default async function AdminAgenda() {
   const session = await auth();
@@ -42,19 +48,52 @@ export default async function AdminAgenda() {
         <div className="mt-12 space-y-14">
           {[...byDay.entries()].map(([day, items]) => (
             <section key={day}>
-              <span className="eyebrow">{day}</span>
+              <span className="eyebrow first-letter:uppercase">{day}</span>
               <ul className="mt-5">
                 {items.map((booking) => (
                   <li
                     key={booking.id}
-                    className="grid grid-cols-[auto_1fr] gap-x-8 border-t border-line py-5 last:border-b"
+                    className="grid grid-cols-[auto_1fr] gap-x-8 gap-y-4 border-t border-line py-5 last:border-b md:grid-cols-[auto_1fr_auto]"
                   >
                     <span className="font-serif text-xl">
                       {time.format(booking.startsAt)}
                     </span>
                     <div>
                       <p className="text-sm">{booking.client.name}</p>
-                      <p className="eyebrow mt-1">{booking.service.name}</p>
+                      <p className="eyebrow mt-1">
+                        {booking.service.name} ·{" "}
+                        {STATUS_LABEL[booking.status] ?? booking.status}
+                      </p>
+                      {booking.occasion && (
+                        <p className="mt-1 text-xs text-muted">
+                          {booking.occasion}
+                        </p>
+                      )}
+                    </div>
+
+                    <div className="col-span-2 flex gap-3 md:col-span-1 md:self-center">
+                      {booking.status === "PENDING" && (
+                        <form action={setBookingStatus}>
+                          <input type="hidden" name="id" value={booking.id} />
+                          <input type="hidden" name="status" value="CONFIRMED" />
+                          <button
+                            type="submit"
+                            className="border border-ink px-4 py-2 text-[0.7rem] tracking-[0.12em] uppercase transition-colors hover:bg-ink hover:text-canvas"
+                          >
+                            Confirmar
+                          </button>
+                        </form>
+                      )}
+                      <form action={setBookingStatus}>
+                        <input type="hidden" name="id" value={booking.id} />
+                        <input type="hidden" name="status" value="CANCELLED" />
+                        <button
+                          type="submit"
+                          className="px-2 py-2 text-[0.7rem] tracking-[0.12em] text-muted uppercase transition-colors hover:text-ink"
+                        >
+                          Cancelar
+                        </button>
+                      </form>
                     </div>
                   </li>
                 ))}

@@ -238,3 +238,16 @@ model Availability {
 
   @@index([startsAt])
 }
+
+/// Janela recorrente de atendimento. weekday: 0 = domingo … 6 = sábado.
+/// Horários em minutos desde a meia-noite, no fuso America/Sao_Paulo.
+model WorkingHours {
+  id           String   @id @default(cuid())
+  weekday      Int
+  startMinutes Int
+  endMinutes   Int
+  active       Boolean  @default(true)
+
+  @@unique([weekday, startMinutes])
+  @@index([weekday, active])
+}

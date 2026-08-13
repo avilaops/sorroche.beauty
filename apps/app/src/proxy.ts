@@ -1,12 +1,16 @@
-import { NextResponse } from "next/server";
+import { NextResponse, type NextRequest } from "next/server";
 import { auth } from "@/auth";
 
 const STAFF_ROLES = new Set(["STAFF", "ADMIN", "OWNER"]);
 
-export default auth((req) => {
+/**
+ * Checagem otimista de sessão. A autorização real acontece em cada
+ * página e server action via `auth()`.
+ */
+export default async function proxy(req: NextRequest) {
+  const session = await auth();
+  const user = session?.user;
   const { pathname } = req.nextUrl;
-  const user = req.auth?.user;
-
   const isAuthRoute = pathname === "/entrar" || pathname === "/criar-conta";
 
   if (!user) {
@@ -22,13 +26,12 @@ export default auth((req) => {
     return NextResponse.redirect(new URL(isStaff ? "/admin" : "/", req.nextUrl));
   }
 
-  // Painel administrativo: apenas STAFF/ADMIN/OWNER.
   if (pathname.startsWith("/admin") && !isStaff) {
     return NextResponse.redirect(new URL("/", req.nextUrl));
   }
 
   return NextResponse.next();
-});
+}
 
 export const config = {
   matcher: ["/((?!api|_next/static|_next/image|favicon.ico|.*\\.png$).*)"],
