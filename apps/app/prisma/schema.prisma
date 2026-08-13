@@ -1,0 +1,240 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role {
+  CLIENT
+  STAFF
+  ADMIN
+  OWNER
+}
+
+enum BookingStatus {
+  PENDING
+  CONFIRMED
+  COMPLETED
+  CANCELLED
+  NO_SHOW
+}
+
+enum PaymentStatus {
+  AWAITING_DEPOSIT
+  DEPOSIT_PAID
+  PAID
+  REFUNDED
+  CANCELLED
+}
+
+enum BridalStage {
+  RESERVATION
+  BRIEFING
+  REFERENCES
+  TRIAL
+  LOOK_APPROVED
+  WEDDING
+  COMPLETED
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String    @unique
+  emailVerified DateTime?
+  image         String?
+  passwordHash  String?
+  role          Role      @default(CLIENT)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  accounts      Account[]
+  sessions      Session[]
+  clientProfile Client?
+
+  @@index([role])
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@index([userId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+/// Perfil de cliente. Separado de User para permitir clientes
+/// cadastradas pela Viviane que ainda não acessaram o app.
+model Client {
+  id         String    @id @default(cuid())
+  userId     String?   @unique
+  name       String
+  phone      String?
+  instagram  String?
+  birthday   DateTime?
+  notes      String?   @db.Text
+  tags       String[]  @default([])
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+
+  user          User?          @relation(fields: [userId], references: [id], onDelete: SetNull)
+  bookings      Booking[]
+  looks         Look[]
+  beautyProfile BeautyProfile?
+  bridalJourney BridalJourney?
+
+  @@index([name])
+  @@index([phone])
+}
+
+model Service {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  name        String
+  description String?  @db.Text
+  /// Em centavos, para evitar erro de ponto flutuante.
+  priceCents  Int?
+  durationMin Int
+  bufferMin   Int      @default(0)
+  active      Boolean  @default(true)
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  bookings Booking[]
+
+  @@index([active, order])
+}
+
+model Booking {
+  id            String        @id @default(cuid())
+  clientId      String
+  serviceId     String
+  startsAt      DateTime
+  endsAt        DateTime
+  status        BookingStatus @default(PENDING)
+  paymentStatus PaymentStatus @default(AWAITING_DEPOSIT)
+  priceCents    Int?
+  depositCents  Int?
+  location      String?
+  occasion      String?
+  eventTime     DateTime?
+  notes         String?       @db.Text
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  client  Client  @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  service Service @relation(fields: [serviceId], references: [id])
+  look    Look?
+
+  @@index([startsAt])
+  @@index([clientId])
+  @@index([status])
+}
+
+/// Beauty Passport: cada atendimento vira um registro de look.
+model Look {
+  id        String   @id @default(cuid())
+  clientId  String
+  bookingId String?  @unique
+  code      String   @unique
+  style     String
+  occasion  String?
+  skin      String?
+  eyes      String?
+  lashes    String?
+  lips      String?
+  products  String?  @db.Text
+  notes     String?  @db.Text
+  photos    String[] @default([])
+  performedAt DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  client  Client   @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  booking Booking? @relation(fields: [bookingId], references: [id], onDelete: SetNull)
+
+  @@index([clientId, performedAt])
+}
+
+/// Preferências relevantes para o atendimento — não é diagnóstico clínico.
+model BeautyProfile {
+  id           String   @id @default(cuid())
+  clientId     String   @unique
+  skinType     String?
+  skinTone     String?
+  undertone    String?
+  sensitivity  String?
+  allergies    String?  @db.Text
+  coverage     String?
+  finish       String?
+  preferences  String?  @db.Text
+  dislikes     String?  @db.Text
+  updatedAt    DateTime @updatedAt
+
+  client Client @relation(fields: [clientId], references: [id], onDelete: Cascade)
+}
+
+model BridalJourney {
+  id          String      @id @default(cuid())
+  clientId    String      @unique
+  stage       BridalStage @default(RESERVATION)
+  weddingDate DateTime?
+  venue       String?
+  ceremonyAt  DateTime?
+  makeupAt    DateTime?
+  dress       String?
+  hair        String?
+  entourage   String?     @db.Text
+  notes       String?     @db.Text
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  client Client @relation(fields: [clientId], references: [id], onDelete: Cascade)
+
+  @@index([weddingDate])
+}
+
+/// Bloqueios de agenda: almoço, férias, compromissos pessoais.
+model Availability {
+  id        String   @id @default(cuid())
+  startsAt  DateTime
+  endsAt    DateTime
+  reason    String?
+  createdAt DateTime @default(now())
+
+  @@index([startsAt])
+}
