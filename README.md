@@ -58,7 +58,41 @@ docker compose up -d --build
 A aplicação escuta apenas em `127.0.0.1:3000`; o Caddy (`deploy/Caddyfile`)
 termina TLS e faz o proxy reverso.
 
-## Roadmap
+## app.sorroche.beauty
 
-`app.sorroche.beauty` — área da cliente, agendamento, Beauty Passport e
-painel administrativo. Escopo em `docs/brief.md`.
+A aplicação vive em `apps/app` e é independente deste site (build, deploy
+e container próprios). Produção: **https://app.sorroche.beauty**
+
+- Next.js 16 + Prisma 7 + PostgreSQL
+- Auth.js v5, credenciais, papéis `CLIENT` / `STAFF` / `ADMIN` / `OWNER`
+- `src/proxy.ts` protege as rotas; `/admin` restrito a staff
+
+```bash
+cd apps/app
+npm install
+npx prisma generate
+npm run dev            # porta 3200
+```
+
+O banco roda no Postgres do host do servidor (não em container, para poupar
+memória). Em desenvolvimento, acesse via túnel SSH:
+
+```bash
+ssh -i ~/.ssh/hetzner_avilaops -N -L 15432:127.0.0.1:5432 root@178.105.82.48
+```
+
+Criar usuário:
+
+```bash
+node scripts/create-user.cjs <email> <senha> <nome> [ROLE]
+```
+
+### Estado atual
+
+Pronto: autenticação, papéis, dashboard da Viviane (agenda do dia e
+indicadores), agenda, clientes, serviços, Beauty Passport e Beauty Profile.
+
+Falta: fluxo de agendamento com data e horário (hoje `/agendar` lista os
+serviços e encaminha ao WhatsApp), registro de looks pela Viviane,
+pagamentos, automações de WhatsApp e lista de espera. Escopo completo em
+`docs/brief.md`.
