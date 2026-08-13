@@ -1,7 +1,20 @@
 import type { MetadataRoute } from "next";
-import { servicePages, siteConfig } from "@/data/site";
+import { siteConfig } from "@/data/site";
 import { works } from "@/data/portfolio";
 import { sortedPosts } from "@/data/posts";
+import { cities } from "@/data/cities";
+
+/** Páginas fixas, com a prioridade que reflete o valor comercial. */
+const staticPages = [
+  { path: "/noivas", priority: 0.9 },
+  { path: "/maquiagem-social", priority: 0.9 },
+  { path: "/maquiagem-blindada", priority: 0.9 },
+  { path: "/curso-automaquiagem", priority: 0.9 },
+  { path: "/maquiagem-a-domicilio", priority: 0.8 },
+  { path: "/portfolio", priority: 0.8 },
+  { path: "/sobre", priority: 0.6 },
+  { path: "/contato", priority: 0.7 },
+];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
@@ -16,11 +29,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
       // O trabalho é visual: as fotos merecem entrar na busca por imagens.
       images: works.map((work) => `${siteConfig.domain}${work.image.src}`),
     },
-    ...servicePages.map((page) => ({
-      url: `${siteConfig.domain}/${page.slug}`,
+    ...staticPages.map((page) => ({
+      url: `${siteConfig.domain}${page.path}`,
       lastModified: now,
       changeFrequency: "monthly" as const,
-      priority: 0.9,
+      priority: page.priority,
+    })),
+    ...cities.map((city) => ({
+      url: `${siteConfig.domain}/atendimento/${city.slug}`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
     })),
     {
       url: `${siteConfig.domain}/blog`,
