@@ -16,11 +16,14 @@ const interface_ = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://app.sorroche.beauty"),
   title: {
     default: "Viviane Sorroche",
     template: "%s — Viviane Sorroche",
   },
   description: "Sua área exclusiva com a Viviane Sorroche.",
+  // Área privada: fora do índice, mas a prévia de compartilhamento
+  // continua valendo quando a cliente recebe o link.
   robots: { index: false, follow: false },
   manifest: "/manifest.webmanifest",
 };

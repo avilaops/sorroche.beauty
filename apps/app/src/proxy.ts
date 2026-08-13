@@ -37,6 +37,6 @@ export const config = {
   // Metadados públicos (manifest, ícones, robots) precisam responder sem
   // sessão — senão o navegador não consegue instalar o app.
   matcher: [
-    "/((?!api|_next/static|_next/image|favicon.ico|icon/|apple-icon|manifest.webmanifest|robots.txt|sitemap.xml|.*\\.png$).*)",
+    "/((?!api|_next/static|_next/image|favicon.ico|icon/|apple-icon|opengraph-image|manifest.webmanifest|robots.txt|sitemap.xml|.*\\.png$).*)",
   ],
 };
