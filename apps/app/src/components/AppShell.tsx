@@ -13,6 +13,7 @@ const ADMIN_NAV = [
   { href: "/admin", label: "Dashboard" },
   { href: "/admin/agenda", label: "Agenda" },
   { href: "/admin/clientes", label: "Clientes" },
+  { href: "/admin/looks", label: "Looks" },
   { href: "/admin/servicos", label: "Serviços" },
 ];
 
