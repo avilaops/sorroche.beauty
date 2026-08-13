@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+@theme {
+  --color-canvas: #faf8f5;
+  --color-canvas-deep: #f2ede7;
+  --color-ink: #0d0c0b;
+  --color-graphite: #3d3a37;
+  --color-muted: #8a827a;
+  --color-line: #e2dbd2;
+  --color-champagne: #c8b39a;
+  --color-nude: #e8d9ca;
+
+  --font-serif: var(--font-editorial), Georgia, serif;
+  --font-sans: var(--font-interface), system-ui, sans-serif;
+
+  --ease-editorial: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-veil: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: var(--color-canvas);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-synthesis-weight: none;
+  }
+
+  ::selection {
+    background: var(--color-nude);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 1px solid var(--color-ink);
+    outline-offset: 3px;
+  }
+}
+
+@layer utilities {
+  .display {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 0.95;
+  }
+
+  .eyebrow {
+    font-size: 0.6875rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+
+  /* Face-safe crops: these portraits carry the face in the upper third,
+     so wide/short frames must bias upward while tall frames need less. */
+  .portrait-crop {
+    object-fit: cover;
+    object-position: center 22%;
+  }
+
+  .portrait-crop-tall {
+    object-fit: cover;
+    object-position: center 12%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
