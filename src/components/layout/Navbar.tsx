@@ -39,7 +39,7 @@ export function Navbar() {
             "flex items-center justify-between px-6 md:px-10",
             // Before scroll the nav shares the viewport with the hero photo,
             // so it stays inside the left text column to keep contrast.
-            scrolled ? "mx-auto max-w-[1400px]" : "lg:w-[45%]"
+            scrolled ? "mx-auto max-w-[1400px]" : "md:w-[45%]"
           )}
         >
           <a
@@ -52,7 +52,7 @@ export function Navbar() {
 
           <ul
             className={cn(
-              "hidden items-center md:flex",
+              "hidden items-center xl:flex",
               scrolled ? "gap-9" : "gap-5 xl:gap-7"
             )}
           >
@@ -70,9 +70,7 @@ export function Navbar() {
             {scrolled && (
               <li>
                 <a
-                  href={whatsappUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href={siteConfig.app}
                   className="border border-ink px-5 py-2.5 text-[0.75rem] tracking-[0.12em] uppercase transition-colors hover:bg-ink hover:text-canvas"
                 >
                   Agendar horário
@@ -84,7 +82,7 @@ export function Navbar() {
           <button
             type="button"
             onClick={() => setOpen(true)}
-            className="text-[0.75rem] tracking-[0.18em] uppercase md:hidden"
+            className="text-[0.75rem] tracking-[0.18em] uppercase xl:hidden"
             aria-label="Abrir menu"
           >
             Menu
@@ -137,12 +135,18 @@ export function Navbar() {
             </ul>
 
             <a
+              href={siteConfig.app}
+              className="block bg-ink py-4 text-center text-[0.75rem] tracking-[0.18em] text-canvas uppercase"
+            >
+              Agendar horário
+            </a>
+            <a
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="block border border-ink py-4 text-center text-[0.75rem] tracking-[0.18em] uppercase"
+              className="mt-3 block border border-line py-4 text-center text-[0.75rem] tracking-[0.18em] uppercase"
             >
-              Agendar pelo WhatsApp
+              Falar no WhatsApp
             </a>
           </motion.div>
         )}

@@ -2,6 +2,7 @@ export const siteConfig = {
   name: "Viviane Sorroche",
   role: "Makeup Artist",
   domain: "https://sorroche.beauty",
+  app: "https://app.sorroche.beauty",
   instagram: {
     handle: "@vivianesorroche.makeup",
     url: "https://www.instagram.com/vivianesorroche.makeup/",

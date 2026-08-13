@@ -1,11 +1,10 @@
-import { Suspense } from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { LoginForm } from "./LoginForm";
+import { SignupForm } from "./SignupForm";
 
-export const metadata: Metadata = { title: "Entrar" };
+export const metadata: Metadata = { title: "Criar conta" };
 
-export default function EntrarPage() {
+export default function CriarContaPage() {
   return (
     <main className="flex min-h-svh items-center justify-center px-6 py-16">
       <div className="w-full max-w-sm">
@@ -16,20 +15,16 @@ export default function EntrarPage() {
           exclusiva.
         </h1>
         <p className="mt-5 text-sm leading-relaxed text-graphite">
-          Acompanhe seus agendamentos, seu Beauty Passport e cada produção.
+          Crie sua conta para agendar, acompanhar suas produções e guardar seu
+          Beauty Passport.
         </p>
 
-        <Suspense fallback={<div className="mt-12 h-64" />}>
-          <LoginForm />
-        </Suspense>
+        <SignupForm />
 
         <p className="mt-10 text-sm text-graphite">
-          Primeira vez aqui?{" "}
-          <Link
-            href="/criar-conta"
-            className="underline underline-offset-4 hover:text-ink"
-          >
-            Criar conta
+          Já tem conta?{" "}
+          <Link href="/entrar" className="underline underline-offset-4 hover:text-ink">
+            Entrar
           </Link>
         </p>
       </div>

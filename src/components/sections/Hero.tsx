@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion, useReducedMotion } from "motion/react";
-import { whatsappUrl } from "@/data/site";
+import { siteConfig } from "@/data/site";
 import hero from "@/../public/portfolio/maquiagem-rose.png";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -19,9 +19,9 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative grid min-h-[100svh] grid-cols-1 lg:grid-cols-[45%_55%]"
+      className="relative grid min-h-[100svh] grid-cols-1 md:grid-cols-[45%_55%]"
     >
-      <div className="order-2 flex items-center px-6 pb-20 pt-10 md:px-10 lg:order-1 lg:pb-0 lg:pt-0">
+      <div className="order-2 flex items-center px-6 pb-20 pt-10 md:order-1 md:px-10 md:pb-0 md:pt-0">
         <div className="max-w-xl">
           <motion.p {...rise(0.5)} className="eyebrow">
             Makeup Artist · São José do Rio Preto
@@ -48,9 +48,7 @@ export function Hero() {
 
           <motion.div {...rise(1.25)} className="mt-11 flex flex-wrap gap-4">
             <a
-              href={whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+              href={siteConfig.app}
               className="bg-ink px-8 py-4 text-[0.75rem] tracking-[0.14em] text-canvas uppercase transition-opacity hover:opacity-85"
             >
               Agendar maquiagem
@@ -69,14 +67,14 @@ export function Hero() {
         initial={reduced ? { opacity: 0 } : { clipPath: "inset(12% 0% 12% 0%)", opacity: 0 }}
         animate={{ clipPath: "inset(0% 0% 0% 0%)", opacity: 1 }}
         transition={{ duration: 1.5, ease: EASE }}
-        className="relative order-1 h-[62svh] lg:order-2 lg:h-auto"
+        className="relative order-1 h-[52svh] md:order-2 md:h-auto"
       >
         <Image
           src={hero}
           alt="Maquiagem social em tons rosé com esfumado quente e pele natural luminosa, por Viviane Sorroche."
           fill
           priority
-          sizes="(max-width: 1024px) 100vw, 55vw"
+          sizes="(max-width: 768px) 100vw, 55vw"
           placeholder="blur"
           className="portrait-crop"
         />
@@ -86,7 +84,7 @@ export function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 1.6 }}
-        className="pointer-events-none absolute bottom-8 left-6 z-10 hidden items-center gap-3 md:left-10 lg:flex"
+        className="pointer-events-none absolute bottom-8 left-6 z-10 hidden items-center gap-3 md:left-10 md:flex"
       >
         <span className="eyebrow">Role</span>
         <span className="h-px w-12 bg-muted" />

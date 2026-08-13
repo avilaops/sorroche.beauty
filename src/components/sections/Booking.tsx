@@ -11,16 +11,25 @@ export function Booking() {
           Vamos criar sua próxima produção?
         </h2>
         <p className="mx-auto mt-8 max-w-sm text-[0.95rem] leading-relaxed text-graphite">
-          Conte para a Viviane sobre sua ocasião e consulte disponibilidade.
+          Escolha o serviço, o dia e o horário — e receba a confirmação da
+          Viviane.
         </p>
-        <a
-          href={whatsappUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-12 inline-block bg-ink px-10 py-5 text-[0.75rem] tracking-[0.14em] text-canvas uppercase transition-opacity hover:opacity-85"
-        >
-          Agendar pelo WhatsApp
-        </a>
+        <div className="mt-12 flex flex-wrap items-center justify-center gap-4">
+          <a
+            href={siteConfig.app}
+            className="inline-block bg-ink px-10 py-5 text-[0.75rem] tracking-[0.14em] text-canvas uppercase transition-opacity hover:opacity-85"
+          >
+            Agendar horário
+          </a>
+          <a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block border border-line px-10 py-5 text-[0.75rem] tracking-[0.14em] uppercase transition-colors hover:border-ink"
+          >
+            Falar no WhatsApp
+          </a>
+        </div>
       </Reveal>
 
       <Reveal
