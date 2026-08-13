@@ -5,8 +5,8 @@ import { works } from "@/data/portfolio";
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
-      // Com barra final, para bater com o canonical.
-      url: `${siteConfig.domain}/`,
+      // Sem barra final, igual ao canonical e ao og:url.
+      url: siteConfig.domain,
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 1,
