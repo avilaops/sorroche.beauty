@@ -2,18 +2,10 @@ import type { Metadata } from "next";
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 import { AppShell } from "@/components/AppShell";
+import { PROFILE_FIELDS } from "@/data/beauty-profile";
+import { ProfileForm } from "./ProfileForm";
 
 export const metadata: Metadata = { title: "Beauty Profile" };
-
-const FIELDS = [
-  ["Tipo de pele", "skinType"],
-  ["Tonalidade", "skinTone"],
-  ["Subtom", "undertone"],
-  ["Sensibilidade", "sensitivity"],
-  ["Alergias", "allergies"],
-  ["Cobertura preferida", "coverage"],
-  ["Acabamento preferido", "finish"],
-] as const;
 
 export default async function Perfil() {
   const session = await auth();
@@ -26,6 +18,17 @@ export default async function Perfil() {
 
   const profile = client?.beautyProfile;
 
+  const values = Object.fromEntries(
+    PROFILE_FIELDS.map((field) => [
+      field.name,
+      (profile as Record<string, unknown> | null | undefined)?.[
+        field.name
+      ] as string | null ?? null,
+    ])
+  );
+
+  const filled = Object.values(values).filter(Boolean).length;
+
   return (
     <AppShell role={session.user.role}>
       <span className="eyebrow">Beauty Profile</span>
@@ -34,24 +37,15 @@ export default async function Perfil() {
       </h1>
       <p className="mt-6 max-w-md text-sm leading-relaxed text-graphite">
         Informações que ajudam a Viviane a preparar seu atendimento. Não é
-        diagnóstico clínico — são suas preferências.
+        diagnóstico clínico — são suas preferências. Preencha o que quiser,
+        quando quiser.
       </p>
 
-      <dl className="mt-14">
-        {FIELDS.map(([label, key]) => (
-          <div
-            key={key}
-            className="grid grid-cols-[1fr_auto] items-baseline gap-6 border-t border-line py-5 last:border-b"
-          >
-            <dt className="text-sm text-graphite">{label}</dt>
-            <dd className="text-sm">
-              {profile?.[key] || (
-                <span className="text-muted">a preencher</span>
-              )}
-            </dd>
-          </div>
-        ))}
-      </dl>
+      <p className="eyebrow mt-8">
+        {filled} de {PROFILE_FIELDS.length} preenchidos
+      </p>
+
+      <ProfileForm values={values} />
     </AppShell>
   );
 }

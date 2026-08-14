@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 import { AppShell } from "@/components/AppShell";
@@ -26,20 +27,24 @@ export default async function AdminClientes() {
       {clients.length > 0 && (
         <ul className="mt-12">
           {clients.map((client) => (
-            <li
-              key={client.id}
-              className="grid grid-cols-[1fr_auto] items-baseline gap-6 border-t border-line py-6 last:border-b"
-            >
-              <div>
-                <p className="font-serif text-2xl">{client.name}</p>
-                {client.phone && (
-                  <p className="eyebrow mt-2">{client.phone}</p>
-                )}
-              </div>
-              <span className="text-sm text-graphite">
-                {client._count.bookings}{" "}
-                {client._count.bookings === 1 ? "atendimento" : "atendimentos"}
-              </span>
+            <li key={client.id} className="border-t border-line last:border-b">
+              <Link
+                href={`/admin/clientes/${client.id}`}
+                className="group grid grid-cols-[1fr_auto] items-baseline gap-6 py-6"
+              >
+                <div>
+                  <p className="font-serif text-2xl transition-transform duration-500 ease-out group-hover:translate-x-1">
+                    {client.name}
+                  </p>
+                  {client.phone && (
+                    <p className="eyebrow mt-2">{client.phone}</p>
+                  )}
+                </div>
+                <span className="text-sm text-graphite">
+                  {client._count.bookings}{" "}
+                  {client._count.bookings === 1 ? "atendimento" : "atendimentos"}
+                </span>
+              </Link>
             </li>
           ))}
         </ul>
