@@ -4,6 +4,7 @@ import { prisma } from "@/lib/prisma";
 import { fullDate, time } from "@/lib/format";
 import { AppShell } from "@/components/AppShell";
 import { setBookingStatus } from "./actions";
+import { confirmationLink } from "@/lib/whatsapp";
 
 export const metadata: Metadata = { title: "Agenda" };
 
@@ -71,7 +72,31 @@ export default async function AdminAgenda() {
                       )}
                     </div>
 
-                    <div className="col-span-2 flex gap-3 md:col-span-1 md:self-center">
+                    <div className="col-span-2 flex flex-wrap items-center gap-3 md:col-span-1 md:self-center">
+                      {booking.status === "CONFIRMED" &&
+                        (() => {
+                          const link = confirmationLink({
+                            phone: booking.client.phone,
+                            clientName: booking.client.name,
+                            serviceName: booking.service.name,
+                            startsAt: booking.startsAt,
+                          });
+                          return link ? (
+                            <a
+                              href={link}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="border border-line px-4 py-2 text-[0.7rem] tracking-[0.12em] uppercase transition-colors hover:border-ink"
+                            >
+                              Avisar no WhatsApp
+                            </a>
+                          ) : (
+                            <span className="text-[0.7rem] tracking-[0.12em] text-muted uppercase">
+                              Sem telefone
+                            </span>
+                          );
+                        })()}
+
                       {booking.status === "PENDING" && (
                         <form action={setBookingStatus}>
                           <input type="hidden" name="id" value={booking.id} />

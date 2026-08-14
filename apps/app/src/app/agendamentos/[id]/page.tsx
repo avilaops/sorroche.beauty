@@ -53,8 +53,8 @@ export default async function AgendamentoDetalhe({
             Está marcado.
           </h1>
           <p className="mt-6 max-w-md text-sm leading-relaxed text-graphite">
-            A Viviane vai confirmar seu horário em breve. Você recebe a
-            confirmação por aqui e pelo WhatsApp.
+            A Viviane vai confirmar seu horário em breve. A confirmação
+            aparece aqui nos seus agendamentos.
           </p>
         </>
       ) : (
