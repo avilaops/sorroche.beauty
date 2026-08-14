@@ -92,6 +92,16 @@ export async function createLook(
     }
   }
 
+  await prisma.notification.create({
+    data: {
+      clientId: booking.clientId,
+      type: "LOOK_READY",
+      title: "Seu look entrou no Beauty Passport",
+      body: `${created!.style} — com produtos, tons e as notas da Viviane.`,
+      href: `/beauty-passport/${created!.id}`,
+    },
+  });
+
   revalidatePath("/admin/looks");
   revalidatePath("/beauty-passport");
   revalidatePath("/");

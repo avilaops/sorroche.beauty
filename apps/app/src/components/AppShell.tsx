@@ -1,6 +1,8 @@
 import Link from "next/link";
 import type { Role } from "@prisma/client";
-import { signOut } from "@/auth";
+import { auth, signOut } from "@/auth";
+import { prisma } from "@/lib/prisma";
+import { NotificationPopup } from "@/components/NotificationPopup";
 
 const CLIENT_NAV = [
   { href: "/", label: "Início" },
@@ -17,7 +19,7 @@ const ADMIN_NAV = [
   { href: "/admin/servicos", label: "Serviços" },
 ];
 
-export function AppShell({
+export async function AppShell({
   role,
   children,
 }: {
@@ -26,6 +28,17 @@ export function AppShell({
 }) {
   const isStaff = role === "STAFF" || role === "ADMIN" || role === "OWNER";
   const nav = isStaff ? ADMIN_NAV : CLIENT_NAV;
+
+  // Avisos pendentes da cliente. Staff não recebe.
+  const session = isStaff ? null : await auth();
+  const pending = session?.user
+    ? await prisma.notification.findMany({
+        where: { readAt: null, client: { userId: session.user.id } },
+        orderBy: { createdAt: "asc" },
+        select: { id: true, title: true, body: true, href: true },
+        take: 5,
+      })
+    : [];
 
   return (
     <div className="min-h-svh">
@@ -67,6 +80,8 @@ export function AppShell({
       </header>
 
       <main className="mx-auto max-w-5xl px-6 py-16">{children}</main>
+
+      {pending.length > 0 && <NotificationPopup notifications={pending} />}
     </div>
   );
 }
