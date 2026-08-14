@@ -45,7 +45,10 @@ export function Navbar({ solid = false }: { solid?: boolean } = {}) {
             "flex items-center justify-between px-6 md:px-10",
             // Before scroll the nav shares the viewport with the hero photo,
             // so it stays inside the left text column to keep contrast.
-            isSolid ? "mx-auto max-w-[1400px]" : "md:w-[45%]"
+            isSolid ? "mx-auto max-w-[1400px]" : "md:w-[45%]",
+            // Below md the photo sits behind the header and is dark, so the
+            // wordmark and the menu button invert to stay readable.
+            !isSolid && "text-canvas md:text-ink"
           )}
         >
           <a

@@ -9,7 +9,7 @@ export const contentType = "image/png";
 
 export default async function OpengraphImage() {
   const [photo, serif] = await Promise.all([
-    readFile(path.join(process.cwd(), "public/portfolio/maquiagem-rose.png")),
+    readFile(path.join(process.cwd(), "public/portfolio/viviane.jpg")),
     // Instrument Serif via next/font não é acessível aqui; a fonte é
     // carregada do pacote para manter a identidade editorial.
     readFile(
@@ -20,7 +20,7 @@ export default async function OpengraphImage() {
     ).catch(() => null),
   ]);
 
-  const photoSrc = `data:image/png;base64,${photo.toString("base64")}`;
+  const photoSrc = `data:image/jpeg;base64,${photo.toString("base64")}`;
 
   return new ImageResponse(
     (
@@ -83,7 +83,7 @@ export default async function OpengraphImage() {
             alt=""
             width={576}
             height={630}
-            style={{ objectFit: "cover", objectPosition: "center 22%" }}
+            style={{ objectFit: "cover", objectPosition: "center" }}
           />
         </div>
       </div>

@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { motion, useReducedMotion } from "motion/react";
 import { siteConfig } from "@/data/site";
-import hero from "@/../public/portfolio/maquiagem-rose.png";
+import hero from "@/../public/portfolio/viviane.jpg";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -71,12 +71,12 @@ export function Hero() {
       >
         <Image
           src={hero}
-          alt="Maquiagem social em tons rosé com esfumado quente e pele natural luminosa, por Viviane Sorroche."
+          alt="Viviane Sorroche, maquiadora em São José do Rio Preto, em retrato de perfil profissional."
           fill
           priority
           sizes="(max-width: 768px) 100vw, 55vw"
           placeholder="blur"
-          className="portrait-crop"
+          className="object-cover object-center"
         />
       </motion.div>
 

@@ -5,7 +5,7 @@ import { PageShell } from "@/components/layout/PageShell";
 import { PageCta } from "@/components/sections/PageCta";
 import { Reveal } from "@/components/animations/Reveal";
 import { siteConfig } from "@/data/site";
-import portrait from "@/../public/portfolio/maquiagem-clean.png";
+import portrait from "@/../public/portfolio/viviane.jpg";
 
 const title = "Sobre a Viviane Sorroche — Maquiadora em Rio Preto";
 const description =
@@ -79,11 +79,11 @@ export default function SobrePage() {
             <div className="relative aspect-4/5 overflow-hidden bg-canvas-deep">
               <Image
                 src={portrait}
-                alt="Trabalho de maquiagem com acabamento natural luminoso, por Viviane Sorroche."
+                alt="Viviane Sorroche, maquiadora em São José do Rio Preto."
                 fill
                 sizes="(max-width: 768px) 100vw, 40vw"
                 placeholder="blur"
-                className="portrait-crop"
+                className="object-cover object-center"
               />
             </div>
           </Reveal>
