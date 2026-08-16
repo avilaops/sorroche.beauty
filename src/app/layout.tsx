@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 import { Instrument_Serif, Inter } from "next/font/google";
 import { siteConfig } from "@/data/site";
+import AnalyticsClickTracker from "@/components/analytics/analytics-click-tracker";
+import {
+  GoogleTagManagerNoScript,
+  GoogleTagManagerScript,
+} from "@/components/analytics/google-tag-manager";
 import "./globals.css";
 
 const editorial = Instrument_Serif({
@@ -78,7 +83,12 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="pt-BR" className={`${editorial.variable} ${interface_.variable}`}>
+      <head>
+        <GoogleTagManagerScript />
+      </head>
       <body>
+        <GoogleTagManagerNoScript />
+        <AnalyticsClickTracker />
         {children}
         <script
           type="application/ld+json"
