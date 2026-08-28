@@ -8,7 +8,6 @@ import { TheLook } from "@/components/sections/TheLook";
 import { Services } from "@/components/sections/Services";
 import { Bridal } from "@/components/sections/Bridal";
 import { Course } from "@/components/sections/Course";
-import { About } from "@/components/sections/About";
 import { Testimonials } from "@/components/sections/Testimonials";
 import { Instagram } from "@/components/sections/Instagram";
 import { Booking } from "@/components/sections/Booking";
@@ -25,7 +24,6 @@ export default function Home() {
         <Services />
         <Bridal />
         <Course />
-        <About />
         <Testimonials />
         <Instagram />
         <Booking />
