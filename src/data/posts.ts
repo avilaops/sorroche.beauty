@@ -1,3 +1,6 @@
+import type { StaticImageData } from "next/image";
+import { postsRioPreto } from "./posts-rio-preto";
+
 /**
  * Conteúdo do blog em blocos estruturados — a interface renderiza a partir
  * daqui, então trocar por um CMS depois não exige refazer as páginas.
@@ -16,10 +19,13 @@ export type Post = {
   date: string;
   readingMinutes: number;
   category: string;
+  /** Foto de abertura — entra no topo do texto e no JSON-LD do artigo. */
+  image?: StaticImageData;
+  imageAlt?: string;
   body: Block[];
 };
 
-export const posts: Post[] = [
+const postsBase: Post[] = [
   {
     slug: "quanto-custa-maquiagem-de-noiva",
     title: "Quanto custa uma maquiagem de noiva em Rio Preto?",
@@ -266,6 +272,8 @@ export const posts: Post[] = [
     ],
   },
 ];
+
+export const posts: Post[] = [...postsBase, ...postsRioPreto];
 
 export function getPost(slug: string) {
   return posts.find((post) => post.slug === slug);

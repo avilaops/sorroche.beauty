@@ -1,6 +1,7 @@
 import { siteConfig } from "@/data/site";
 import { services } from "@/data/services";
 import { works } from "@/data/portfolio";
+import { sortedPosts } from "@/data/posts";
 
 // Convenção llmstxt.org: um resumo em Markdown, legível por modelos de
 // linguagem, do que o site oferece.
@@ -22,6 +23,10 @@ ${services.map((service) => `- **${service.title}** — ${service.description}`)
 ## Estilos no portfólio
 
 ${works.map((work) => `- ${work.style} (${work.category})`).join("\n")}
+
+## Blog
+
+${sortedPosts.map((post) => `- [${post.title}](${siteConfig.domain}/blog/${post.slug}): ${post.description}`).join("\n")}
 
 ## Atendimento
 
