@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { siteConfig } from "@/data/site";
 import { Reveal } from "@/components/animations/Reveal";
-import portrait from "@/../public/portfolio/maquiagem-clean.png";
+import portrait from "@/../public/portfolio/viviane-mirante.jpg";
 
 export function About() {
   return (
@@ -11,7 +11,7 @@ export function About() {
           <div className="relative aspect-4/5 overflow-hidden bg-canvas-deep">
             <Image
               src={portrait}
-              alt="Retrato de maquiagem clean com pele natural, por Viviane Sorroche."
+              alt="Viviane Sorroche em um mirante, de chapéu de palha e camisa branca, com a cidade e o mar ao fundo."
               fill
               sizes="(max-width: 768px) 100vw, 58vw"
               placeholder="blur"

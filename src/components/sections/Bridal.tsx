@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { whatsappUrl } from "@/data/site";
 import { Reveal } from "@/components/animations/Reveal";
-import bridal from "@/../public/portfolio/maquiagem-blindada.png";
+import bridal from "@/../public/portfolio/esfumado-suave.jpg";
 
 const details = [
   "Preparação personalizada",
