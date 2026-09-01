@@ -13,7 +13,7 @@ Eu iria numa direção **Luxury Beauty + Editorial + Apple-like**, evitando rosa
 
 Crie um website institucional extremamente sofisticado, clean, tecnológico, editorial e premium para:
 
-**Viviane Sorroche — Maquiadora em São José do Rio Preto/SP**
+**Viviane Sorroche, Maquiadora em São José do Rio Preto/SP**
 
 O objetivo não é criar apenas mais um site de maquiadora.
 
@@ -600,7 +600,7 @@ Utilizar um CTA flutuante elegante no mobile.
 
 Mostrar:
 
-**São José do Rio Preto — SP**
+**São José do Rio Preto, SP**
 
 Endereço informado:
 
@@ -967,7 +967,7 @@ E tecnicamente a direção faz sentido com o ecossistema atual do 21st: ele tem 
 [1]: https://21st.dev/?utm_source=chatgpt.com "Discover community-made UI components | 21st"
 
 
-Dá — e, para ela, eu acho até mais interessante pensar em **site + aplicação web**, em vez de fazer somente um portfólio bonito.
+Dá, e, para ela, eu acho até mais interessante pensar em **site + aplicação web**, em vez de fazer somente um portfólio bonito.
 
 O site seria a vitrine. A aplicação seria o **sistema operacional da maquiadora**, cuidando de agenda, clientes, noivas, pagamentos, histórico de maquiagem e relacionamento.
 
@@ -1195,10 +1195,10 @@ Mostrar:
 
 **Hoje**
 
-* 09:00 — Amanda — Social
-* 11:30 — Beatriz — Blindada
-* 15:00 — Camila — Noiva
-* 18:00 — Júlia — Social
+* 09:00, Amanda, Social
+* 11:30, Beatriz, Blindada
+* 15:00, Camila, Noiva
+* 18:00, Júlia, Social
 
 Mais indicadores:
 
@@ -1335,7 +1335,7 @@ Status:
 
 `Cancelado`
 
-Pode integrar futuramente com Mercado Pago, Stripe ou outro gateway escolhido.
+Pode integrar futuramente com Mercado Pago.
 
 ---
 
@@ -1445,7 +1445,7 @@ Cada cliente teria um verdadeiro passaporte digital das maquiagens feitas pela V
 
 Exemplo:
 
-> **Beauty Passport — Mariana**
+> **Beauty Passport, Mariana**
 >
 > 4 produções realizadas
 >

@@ -1,4 +1,4 @@
-# Viviane Sorroche — Makeup Artist
+# Viviane Sorroche: Makeup Artist
 
 Site institucional premium para Viviane Sorroche, maquiadora em São José do Rio Preto/SP.
 
@@ -37,7 +37,7 @@ Nenhum dado fica hardcoded nos componentes.
 
 ### Depoimentos
 
-`src/data/testimonials.ts` está intencionalmente vazio — nenhuma avaliação
+`src/data/testimonials.ts` está intencionalmente vazio, nenhuma avaliação
 real foi fornecida. Ao preencher o array, a seção passa a renderizar
 automaticamente.
 
