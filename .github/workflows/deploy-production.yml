@@ -43,3 +43,18 @@ jobs:
       DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
       DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
       DEPLOY_KNOWN_HOSTS: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
+  deploy_app:
+    needs: app_image
+    if: github.event_name != 'pull_request' && vars.DEPLOY_APP_ENABLED == 'true'
+    permissions:
+      contents: read
+      packages: read
+    uses: avilaops/infra-observabilidade/.github/workflows/deploy-ssh.yml@cb950d970a7bf0638ecb89629be5d0456bfbb50c
+    with:
+      application: app.sorroche.beauty
+      image: ${{ needs.app_image.outputs.image }}
+    secrets:
+      DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+      DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+      DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_APP_SSH_KEY }}
+      DEPLOY_KNOWN_HOSTS: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
