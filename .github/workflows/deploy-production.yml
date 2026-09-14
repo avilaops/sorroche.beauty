@@ -12,7 +12,7 @@ jobs:
     permissions:
       contents: read
       packages: write
-    uses: avilaops/infra-observabilidade/.github/workflows/container.yml@5fc768f4ebf631bdcd614b3e87a148dc08dd278f
+    uses: avilaops/infra/.github/workflows/container.yml@5fc768f4ebf631bdcd614b3e87a148dc08dd278f
     with:
       context: .
       dockerfile: Dockerfile
@@ -22,7 +22,7 @@ jobs:
     permissions:
       contents: read
       packages: write
-    uses: avilaops/infra-observabilidade/.github/workflows/container.yml@5fc768f4ebf631bdcd614b3e87a148dc08dd278f
+    uses: avilaops/infra/.github/workflows/container.yml@5fc768f4ebf631bdcd614b3e87a148dc08dd278f
     with:
       context: apps/app
       dockerfile: apps/app/Dockerfile
@@ -34,7 +34,7 @@ jobs:
     permissions:
       contents: read
       packages: read
-    uses: avilaops/infra-observabilidade/.github/workflows/deploy-ssh.yml@5fc768f4ebf631bdcd614b3e87a148dc08dd278f
+    uses: avilaops/infra/.github/workflows/deploy-ssh.yml@5fc768f4ebf631bdcd614b3e87a148dc08dd278f
     with:
       application: sorroche.beauty
       image: ${{ needs.image.outputs.image }}
@@ -49,7 +49,7 @@ jobs:
     permissions:
       contents: read
       packages: read
-    uses: avilaops/infra-observabilidade/.github/workflows/deploy-ssh.yml@cb950d970a7bf0638ecb89629be5d0456bfbb50c
+    uses: avilaops/infra/.github/workflows/deploy-ssh.yml@cb950d970a7bf0638ecb89629be5d0456bfbb50c
     with:
       application: app.sorroche.beauty
       image: ${{ needs.app_image.outputs.image }}
