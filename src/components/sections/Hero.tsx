@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion, useReducedMotion } from "motion/react";
-import { siteConfig } from "@/data/site";
+import { whatsappUrl } from "@/data/site";
 import hero from "@/../public/portfolio/viviane.jpg";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -48,7 +48,9 @@ export function Hero() {
 
           <motion.div {...rise(1.25)} className="mt-11 flex flex-wrap gap-4">
             <a
-              href={siteConfig.app}
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               className="bg-ink px-8 py-4 text-[0.75rem] tracking-[0.14em] text-canvas uppercase transition-opacity hover:opacity-85"
             >
               Agendar maquiagem

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import { siteConfig } from "@/data/site";
+import { whatsappUrl } from "@/data/site";
 
 export function FloatingCta() {
   const [visible, setVisible] = useState(false);
@@ -18,7 +18,9 @@ export function FloatingCta() {
     <AnimatePresence>
       {visible && (
         <motion.a
-          href={siteConfig.app}
+          href={whatsappUrl}
+          target="_blank"
+          rel="noopener noreferrer"
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 16 }}

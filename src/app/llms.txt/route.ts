@@ -1,4 +1,4 @@
-import { siteConfig } from "@/data/site";
+import { siteConfig, whatsappUrl } from "@/data/site";
 import { services } from "@/data/services";
 import { works } from "@/data/portfolio";
 import { sortedPosts } from "@/data/posts";
@@ -37,12 +37,12 @@ ${sortedPosts.map((post) => `- [${post.title}](${siteConfig.domain}/blog/${post.
 
 ## Agendamento
 
-Os horários disponíveis, o agendamento online e a área da cliente ficam em ${siteConfig.app}. A cliente escolhe o serviço, o dia e o horário, e recebe a confirmação da Viviane.
+O agendamento é feito pelo WhatsApp (${siteConfig.phone}). A cliente informa o serviço, o dia e o horário, e recebe a confirmação da Viviane.
 
 ## Links
 
 - [Site](${siteConfig.domain}/): portfólio, serviços, noivas, curso e contato
-- [Agendamento e área da cliente](${siteConfig.app})
+- [Agendar pelo WhatsApp](${whatsappUrl})
 - [Instagram](${instagram.url})
 `;
 
