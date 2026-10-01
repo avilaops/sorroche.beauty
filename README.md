@@ -49,51 +49,23 @@ crops usam `.portrait-crop` (frames largos) e `.portrait-crop-tall`
 
 ## Deploy
 
-Docker + Caddy em VPS Hetzner.
+Site 100% estático, sem servidor Node em produção. `npm run build` gera a
+pasta `out/` (`output: "export"` em `next.config.ts`).
+
+O CI (`.github/workflows/deploy-production.yml`) monta uma imagem que só
+transporta esses arquivos; o deploy estático da infra (`DEPLOY_MODE=static`
+em `avilaops/infra`) copia o conteúdo para `/var/www/sorroche.beauty`, com
+rollback automático se a verificação falhar. O Caddy serve os arquivos direto
+(`deploy/Caddyfile`).
+
+Para conferir localmente:
 
 ```bash
-docker compose up -d --build
+npm run build
+npx serve out
 ```
 
-A aplicação escuta apenas em `127.0.0.1:3000`; o Caddy (`deploy/Caddyfile`)
-termina TLS e faz o proxy reverso.
-
-## app.sorroche.beauty
-
-**Desativada em 16/09/2026.** O domínio, o container e o deploy foram
-removidos; o agendamento do site passou a ser pelo WhatsApp. O código segue
-em `apps/app` para consulta.
-
-- Next.js 16 + Prisma 7 + PostgreSQL
-- Auth.js v5, credenciais, papéis `CLIENT` / `STAFF` / `ADMIN` / `OWNER`
-- `src/proxy.ts` protege as rotas; `/admin` restrito a staff
-
-```bash
-cd apps/app
-npm install
-npx prisma generate
-npm run dev            # porta 3200
-```
-
-O banco roda no Postgres do host do servidor (não em container, para poupar
-memória). Em desenvolvimento, acesse via túnel SSH:
-
-```bash
-ssh -i ~/.ssh/hetzner_avilaops -N -L 15432:127.0.0.1:5432 root@178.105.82.48
-```
-
-Criar usuário:
-
-```bash
-node scripts/create-user.cjs <email> <senha> <nome> [ROLE]
-```
-
-### Estado atual
-
-Pronto: autenticação, papéis, dashboard da Viviane (agenda do dia e
-indicadores), agenda, clientes, serviços, Beauty Passport e Beauty Profile.
-
-Falta: fluxo de agendamento com data e horário (hoje `/agendar` lista os
-serviços e encaminha ao WhatsApp), registro de looks pela Viviane,
-pagamentos, automações de WhatsApp e lista de espera. Escopo completo em
-`docs/brief.md`.
+Não existe área administrativa nem banco de dados: todo o conteúdo vive em
+`src/data/` e o agendamento é pelo WhatsApp. A antiga `app.sorroche.beauty`
+(desativada em 16/09/2026) foi removida do repositório; o código continua no
+histórico do Git.

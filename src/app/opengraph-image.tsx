@@ -7,6 +7,9 @@ export const alt = `${siteConfig.name} — Makeup Artist em ${siteConfig.address
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
+// Gerado uma vez no build: o site é exportado como arquivos estáticos.
+export const dynamic = "force-static";
+
 export default async function OpengraphImage() {
   const [photo, serif] = await Promise.all([
     readFile(path.join(process.cwd(), "public/portfolio/viviane.jpg")),

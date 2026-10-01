@@ -10,6 +10,9 @@ export function generateImageMetadata() {
   ];
 }
 
+// Gerado uma vez no build: o site é exportado como arquivos estáticos.
+export const dynamic = "force-static";
+
 export default async function Icon({ id }: { id: Promise<string> }) {
   return renderMark(Number(await id));
 }

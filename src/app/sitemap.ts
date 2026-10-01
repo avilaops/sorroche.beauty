@@ -16,6 +16,9 @@ const staticPages = [
   { path: "/contato", priority: 0.7 },
 ];
 
+// Gerado uma vez no build: o site é exportado como arquivos estáticos.
+export const dynamic = "force-static";
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 

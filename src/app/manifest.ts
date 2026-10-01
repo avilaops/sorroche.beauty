@@ -1,6 +1,9 @@
 import type { MetadataRoute } from "next";
 import { siteConfig } from "@/data/site";
 
+// Gerado uma vez no build: o site é exportado como arquivos estáticos.
+export const dynamic = "force-static";
+
 export default function manifest(): MetadataRoute.Manifest {
   return {
     name: `${siteConfig.name} — ${siteConfig.role}`,

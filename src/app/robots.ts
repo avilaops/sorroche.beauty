@@ -35,6 +35,9 @@ const SEARCH_BOTS = [
   "Applebot",
 ];
 
+// Gerado uma vez no build: o site é exportado como arquivos estáticos.
+export const dynamic = "force-static";
+
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [

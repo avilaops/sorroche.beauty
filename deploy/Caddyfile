@@ -8,9 +8,24 @@ sorroche.beauty, www.sorroche.beauty {
 		X-Frame-Options "SAMEORIGIN"
 	}
 
-	# Next.js fingerprints these, so they are safe to cache immutably.
+	root * /var/www/sorroche.beauty
+
+	# Next.js gera os assets de /_next/static com hash no nome.
 	@immutable path /_next/static/*
 	header @immutable Cache-Control "public, max-age=31536000, immutable"
 
-	reverse_proxy 127.0.0.1:3030
+	# Ícones e imagem de compartilhamento são gerados sem extensão.
+	@png path /icon/* /apple-icon /opengraph-image
+	header @png Content-Type image/png
+	@manifest path /manifest.webmanifest
+	header @manifest Content-Type application/manifest+json
+
+	# O export gera /sobre.html para a rota /sobre: as URLs públicas não mudam.
+	try_files {path}.html {path} {path}/index.html
+	file_server
+
+	handle_errors 404 {
+		rewrite * /404.html
+		file_server
+	}
 }
