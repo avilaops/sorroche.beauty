@@ -21,7 +21,7 @@ export function Instagram() {
       </Reveal>
 
       <div className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-4">
-        {works.map((work, i) => (
+        {works.slice(0, 5).map((work, i) => (
           <Reveal
             key={work.id}
             delay={i * 0.06}

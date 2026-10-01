@@ -5,7 +5,7 @@ import { Faq, type QA } from "@/components/sections/Faq";
 import { PageCta } from "@/components/sections/PageCta";
 import { Reveal } from "@/components/animations/Reveal";
 import { siteConfig } from "@/data/site";
-import blindada from "@/../public/portfolio/maquiagem-blindada.png";
+import blindada from "@/../public/portfolio/esfumado-preto.jpg";
 
 const title = "Maquiagem Blindada em São José do Rio Preto";
 const description =

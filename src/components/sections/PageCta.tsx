@@ -1,4 +1,4 @@
-import { siteConfig, whatsappUrl } from "@/data/site";
+import { whatsappUrl } from "@/data/site";
 
 export function PageCta({
   title,
@@ -18,18 +18,12 @@ export function PageCta({
         </p>
         <div className="mt-12 flex flex-wrap items-center justify-center gap-4">
           <a
-            href={siteConfig.app}
-            className="bg-ink px-10 py-5 text-[0.75rem] tracking-[0.14em] text-canvas uppercase transition-opacity hover:opacity-85"
-          >
-            Agendar horário
-          </a>
-          <a
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="border border-line px-10 py-5 text-[0.75rem] tracking-[0.14em] uppercase transition-colors hover:border-ink"
+            className="bg-ink px-10 py-5 text-[0.75rem] tracking-[0.14em] text-canvas uppercase transition-opacity hover:opacity-85"
           >
-            Falar no WhatsApp
+            Agendar pelo WhatsApp
           </a>
         </div>
       </div>

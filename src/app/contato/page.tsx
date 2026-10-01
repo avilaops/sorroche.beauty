@@ -53,7 +53,7 @@ export default function ContatoPage() {
     <PageShell
       eyebrow="Contato"
       title="Vamos combinar o seu horário."
-      lead="O agendamento online mostra os horários realmente disponíveis. Para dúvidas ou produções fora do comum, fale direto com a Viviane."
+      lead="O agendamento é feito direto com a Viviane pelo WhatsApp: conte o serviço, a data e o local, e ela confirma o horário."
       crumbs={[{ label: "Contato", href: "/contato" }]}
     >
       <section className="mx-auto max-w-[1400px] px-6 py-20 md:px-10 md:py-28">
@@ -61,14 +61,16 @@ export default function ContatoPage() {
           <Reveal>
             <span className="eyebrow">Agendamento</span>
             <p className="mt-4 text-[0.95rem] leading-relaxed text-graphite">
-              Escolha o serviço, o dia e o horário. Você recebe a confirmação
-              da Viviane em seguida.
+              Conte o serviço, o dia e o horário que prefere. Você recebe a
+              confirmação da Viviane em seguida.
             </p>
             <a
-              href={siteConfig.app}
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               className="mt-6 inline-block bg-ink px-8 py-4 text-[0.75rem] tracking-[0.14em] text-canvas uppercase transition-opacity hover:opacity-85"
             >
-              Agendar horário
+              Agendar pelo WhatsApp
             </a>
           </Reveal>
 

@@ -1,4 +1,4 @@
-# Viviane Sorroche — Makeup Artist
+# Viviane Sorroche: Makeup Artist
 
 Site institucional premium para Viviane Sorroche, maquiadora em São José do Rio Preto/SP.
 
@@ -37,7 +37,7 @@ Nenhum dado fica hardcoded nos componentes.
 
 ### Depoimentos
 
-`src/data/testimonials.ts` está intencionalmente vazio — nenhuma avaliação
+`src/data/testimonials.ts` está intencionalmente vazio, nenhuma avaliação
 real foi fornecida. Ao preencher o array, a seção passa a renderizar
 automaticamente.
 
@@ -60,8 +60,9 @@ termina TLS e faz o proxy reverso.
 
 ## app.sorroche.beauty
 
-A aplicação vive em `apps/app` e é independente deste site (build, deploy
-e container próprios). Produção: **https://app.sorroche.beauty**
+**Desativada em 16/09/2026.** O domínio, o container e o deploy foram
+removidos; o agendamento do site passou a ser pelo WhatsApp. O código segue
+em `apps/app` para consulta.
 
 - Next.js 16 + Prisma 7 + PostgreSQL
 - Auth.js v5, credenciais, papéis `CLIENT` / `STAFF` / `ADMIN` / `OWNER`

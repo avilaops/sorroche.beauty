@@ -5,7 +5,7 @@ import { Faq, type QA } from "@/components/sections/Faq";
 import { PageCta } from "@/components/sections/PageCta";
 import { Reveal } from "@/components/animations/Reveal";
 import { siteConfig } from "@/data/site";
-import social from "@/../public/portfolio/maquiagem-rose.png";
+import social from "@/../public/portfolio/rose-iluminado.jpg";
 
 const title = "Maquiagem Social em São José do Rio Preto";
 const description =

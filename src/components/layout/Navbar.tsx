@@ -79,7 +79,9 @@ export function Navbar({ solid = false }: { solid?: boolean } = {}) {
             {isSolid && (
               <li>
                 <a
-                  href={siteConfig.app}
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="border border-ink px-5 py-2.5 text-[0.75rem] tracking-[0.12em] uppercase transition-colors hover:bg-ink hover:text-canvas"
                 >
                   Agendar horário
@@ -144,18 +146,12 @@ export function Navbar({ solid = false }: { solid?: boolean } = {}) {
             </ul>
 
             <a
-              href={siteConfig.app}
-              className="block bg-ink py-4 text-center text-[0.75rem] tracking-[0.18em] text-canvas uppercase"
-            >
-              Agendar horário
-            </a>
-            <a
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-3 block border border-line py-4 text-center text-[0.75rem] tracking-[0.18em] uppercase"
+              className="block bg-ink py-4 text-center text-[0.75rem] tracking-[0.18em] text-canvas uppercase"
             >
-              Falar no WhatsApp
+              Agendar pelo WhatsApp
             </a>
           </motion.div>
         )}

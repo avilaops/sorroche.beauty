@@ -5,7 +5,7 @@ import { Faq, type QA } from "@/components/sections/Faq";
 import { PageCta } from "@/components/sections/PageCta";
 import { Reveal } from "@/components/animations/Reveal";
 import { siteConfig } from "@/data/site";
-import bridal from "@/../public/portfolio/maquiagem-clean.png";
+import bridal from "@/../public/portfolio/esfumado-suave.jpg";
 
 const title = "Maquiagem de Noiva em São José do Rio Preto";
 const description =

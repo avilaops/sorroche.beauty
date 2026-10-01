@@ -5,7 +5,7 @@ import { PageShell } from "@/components/layout/PageShell";
 import { PageCta } from "@/components/sections/PageCta";
 import { Reveal } from "@/components/animations/Reveal";
 import { siteConfig } from "@/data/site";
-import portrait from "@/../public/portfolio/viviane.jpg";
+import portrait from "@/../public/portfolio/viviane-mirante.jpg";
 
 const title = "Sobre a Viviane Sorroche — Maquiadora em Rio Preto";
 const description =

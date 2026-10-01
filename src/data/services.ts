@@ -1,7 +1,7 @@
 import type { StaticImageData } from "next/image";
-import blindada from "@/../public/portfolio/maquiagem-blindada.png";
-import clean from "@/../public/portfolio/maquiagem-clean.png";
-import rose from "@/../public/portfolio/maquiagem-rose.png";
+import blindada from "@/../public/portfolio/esfumado-preto.jpg";
+import clean from "@/../public/portfolio/delineado.jpg";
+import rose from "@/../public/portfolio/rose-iluminado.jpg";
 
 export type Service = {
   index: string;

@@ -34,3 +34,27 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Login com Google
+
+O app aceita e-mail/senha e Google. O provider Google só entra se
+`AUTH_GOOGLE_ID` e `AUTH_GOOGLE_SECRET` existirem — sem elas o botão não é
+renderizado e nada quebra.
+
+A credencial é um **OAuth Client** do projeto Google `contatos-424700`, com os
+redirects deste domínio (o projeto é compartilhado; o cliente OAuth é próprio).
+No Console → APIs e Serviços → Credenciais → Criar → ID do cliente OAuth →
+Aplicativo da Web:
+
+- Origens JavaScript: `https://app.sorroche.beauty`, `http://localhost:3000`
+- URIs de redirecionamento:
+  - `https://app.sorroche.beauty/api/auth/callback/google`
+  - `http://localhost:3000/api/auth/callback/google`
+
+Quem já tem conta por senha e entra pelo Google com o mesmo e-mail cai na mesma
+conta (`allowDangerousEmailAccountLinking`) — sem isso o Auth.js recusa com
+`OAuthAccountNotLinked` numa tela sem saída. Conta criada pelo Google não passa
+pelo `/criar-conta`, então o `Client` é criado no evento `createUser`.
+
+As tabelas `Account`, `Session` e `VerificationToken` já existem desde a
+migration inicial; não há migration nova.

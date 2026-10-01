@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { PageShell } from "@/components/layout/PageShell";
 import { PageCta } from "@/components/sections/PageCta";
@@ -65,7 +66,9 @@ export default async function PostPage({
       url: siteConfig.domain,
     },
     mainEntityOfPage: `${siteConfig.domain}/blog/${post.slug}`,
-    image: `${siteConfig.domain}/opengraph-image`,
+    image: post.image
+      ? `${siteConfig.domain}${post.image.src}`
+      : `${siteConfig.domain}/opengraph-image`,
   };
 
   return (
@@ -85,6 +88,22 @@ export default async function PostPage({
           <span className="eyebrow">{post.readingMinutes} min de leitura</span>
         </div>
       </div>
+
+      {post.image && (
+        <div className="mx-auto mt-16 max-w-[1400px] px-6 md:px-10">
+          <div className="relative aspect-[4/5] w-full overflow-hidden bg-canvas-deep sm:aspect-[3/2] md:aspect-[16/9]">
+            <Image
+              src={post.image}
+              alt={post.imageAlt ?? post.title}
+              fill
+              priority
+              sizes="(max-width: 768px) 100vw, 1400px"
+              placeholder="blur"
+              className="banner-crop"
+            />
+          </div>
+        </div>
+      )}
 
       <article className="mx-auto max-w-[1400px] px-6 py-16 md:px-10 md:py-24">
         <div className="flex max-w-[38rem] flex-col gap-7">

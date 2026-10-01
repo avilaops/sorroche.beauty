@@ -1,7 +1,14 @@
 import type { StaticImageData } from "next/image";
-import blindada from "@/../public/portfolio/maquiagem-blindada.png";
-import clean from "@/../public/portfolio/maquiagem-clean.png";
-import rose from "@/../public/portfolio/maquiagem-rose.png";
+import esfumadoMarrom from "@/../public/portfolio/esfumado-marrom.jpg";
+import roseIluminado from "@/../public/portfolio/rose-iluminado.jpg";
+import esfumadoPreto from "@/../public/portfolio/esfumado-preto.jpg";
+import glow from "@/../public/portfolio/glow.jpg";
+import delineado from "@/../public/portfolio/delineado.jpg";
+import esfumadoSuave from "@/../public/portfolio/esfumado-suave.jpg";
+import dourado from "@/../public/portfolio/dourado.jpg";
+import debutante from "@/../public/portfolio/debutante.jpg";
+import ondasHollywood from "@/../public/portfolio/ondas-hollywood.jpg";
+import radiante from "@/../public/portfolio/radiante.jpg";
 
 export type Work = {
   id: string;
@@ -11,27 +18,77 @@ export type Work = {
   image: StaticImageData;
 };
 
+/** Fotos reais de atendimentos, ordenadas para alternar tom e clima. */
 export const works: Work[] = [
+  {
+    id: "delineado",
+    style: "Delineado",
+    category: "Maquiagem Social",
+    alt: "Maquiagem social com delineado gatinho preciso, pele rosada luminosa e lábios nude, em cliente ruiva.",
+    image: delineado,
+  },
   {
     id: "rose",
     style: "Rosé",
     category: "Maquiagem Social",
-    alt: "Maquiagem social em tons rosé, com esfumado quente e pele de acabamento natural luminoso.",
-    image: rose,
+    alt: "Esfumado rosé com brilho iluminado nas pálpebras, cílios volumosos e lábios em tom vinho suave, em cliente de cabelo cacheado.",
+    image: roseIluminado,
   },
   {
-    id: "blindada",
-    style: "Blindada",
+    id: "esfumado-preto",
+    style: "Esfumado",
     category: "Longa Duração",
-    alt: "Maquiagem blindada com lábios vermelhos e olhar esfumado, acabamento de alta duração.",
-    image: blindada,
+    alt: "Esfumado preto com pele acetinada e lábios rosados, rabo de cavalo baixo com ondas.",
+    image: esfumadoPreto,
   },
   {
-    id: "clean",
-    style: "Clean",
+    id: "ondas-hollywood",
+    style: "Hollywood",
+    category: "Festa",
+    alt: "Maquiagem com pálpebra iluminada e lábios nude, cabelo em ondas Hollywood, vestido azul royal.",
+    image: ondasHollywood,
+  },
+  {
+    id: "dourado",
+    style: "Dourado",
+    category: "Festa",
+    alt: "Esfumado dourado com glitter, blush rosado e lábios glossy, coque alto com mechas soltas.",
+    image: dourado,
+  },
+  {
+    id: "esfumado-marrom",
+    style: "Marrom",
+    category: "Longa Duração",
+    alt: "Esfumado marrom com delineado, pele bronzeada e lábios glossy, em cliente loira de cabelo ondulado.",
+    image: esfumadoMarrom,
+  },
+  {
+    id: "radiante",
+    style: "Radiante",
     category: "Beauty",
-    alt: "Maquiagem clean com pele natural, sobrancelhas definidas e lábios em tom nude rosado.",
-    image: clean,
+    alt: "Maquiagem leve com pele iluminada, blush pêssego e sorriso aberto, vestido preto de um ombro só.",
+    image: radiante,
+  },
+  {
+    id: "esfumado-suave",
+    style: "Clássica",
+    category: "Noivas",
+    alt: "Esfumado marrom suave, pele natural e lábios rosados, cabelo preso com ondas soltas e colar de diamantes.",
+    image: esfumadoSuave,
+  },
+  {
+    id: "glow",
+    style: "Glow",
+    category: "Beauty",
+    alt: "Pele bronzeada iluminada, esfumado suave e lábios nude, cabelo preso e colar riviera.",
+    image: glow,
+  },
+  {
+    id: "debutante",
+    style: "Debutante",
+    category: "Festa",
+    alt: "Debutante com tiara e vestido rosa de pétalas, maquiagem delicada em festa decorada com flores.",
+    image: debutante,
   },
 ];
 
@@ -49,20 +106,20 @@ export const lookChapters: LookChapter[] = [
     title: "Pele que continua pele.",
     description:
       "Acabamento natural, textura preservada, o mínimo necessário para que a luz faça o resto.",
-    image: clean,
+    image: delineado,
   },
   {
     label: "Rosé",
     title: "Calor nos olhos.",
     description:
       "Esfumado quente em tons rosé, olhar suave e um brilho que acompanha o movimento.",
-    image: rose,
+    image: roseIluminado,
   },
   {
     label: "Bold",
     title: "Um gesto decisivo.",
     description:
       "Lábio marcante, contorno preciso e a segurança de uma maquiagem que atravessa a noite.",
-    image: blindada,
+    image: esfumadoPreto,
   },
 ];
