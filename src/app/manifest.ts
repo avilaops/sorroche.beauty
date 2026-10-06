@@ -1,6 +1,9 @@
 import type { MetadataRoute } from "next";
 import { siteConfig } from "@/data/site";
 
+// `output: "export"` exige que a rota seja resolvida no build.
+export const dynamic = "force-static";
+
 export default function manifest(): MetadataRoute.Manifest {
   return {
     name: `${siteConfig.name} — ${siteConfig.role}`,

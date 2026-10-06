@@ -1,6 +1,9 @@
 import type { MetadataRoute } from "next";
 import { siteConfig } from "@/data/site";
 
+// `output: "export"` exige que a rota seja resolvida no build.
+export const dynamic = "force-static";
+
 /**
  * O acervo fotográfico da Viviane não é material de treinamento, mas
  * aparecer em respostas de assistentes traz cliente. As duas coisas têm

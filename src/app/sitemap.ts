@@ -4,6 +4,9 @@ import { works } from "@/data/portfolio";
 import { sortedPosts } from "@/data/posts";
 import { cities } from "@/data/cities";
 
+// `output: "export"` exige que a rota seja resolvida no build.
+export const dynamic = "force-static";
+
 /** Páginas fixas, com a prioridade que reflete o valor comercial. */
 const staticPages = [
   { path: "/noivas", priority: 0.9 },
