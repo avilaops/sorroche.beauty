@@ -49,14 +49,11 @@ crops usam `.portrait-crop` (frames largos) e `.portrait-crop-tall`
 
 ## Deploy
 
-Docker + Caddy em VPS Hetzner.
+Publicado no **GitHub Pages** pelo workflow `.github/workflows/pages.yml`: todo push na `main` gera o site e publica; pull requests só rodam o build, para validar.
 
-```bash
-docker compose up -d --build
-```
-
-A aplicação escuta apenas em `127.0.0.1:3000`; o Caddy (`deploy/Caddyfile`)
-termina TLS e faz o proxy reverso.
+O site é exportado como HTML estático (`output: "export"` em `next.config.ts`,
+saída em `out/`). Toda rota precisa ser resolvida no build: rotas de metadados
+e route handlers declaram `dynamic = "force-static"`.
 
 ## app.sorroche.beauty
 
